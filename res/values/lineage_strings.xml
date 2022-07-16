@@ -15,7 +15,7 @@
 -->
 <resources>
     <!-- Application name -->
-    <string name="lineageos_app_name" translatable="false">crDroid Home</string>
+    <string name="lineageos_app_name" translatable="false">Crooked Home</string>
 
     <!-- Settings -->
 

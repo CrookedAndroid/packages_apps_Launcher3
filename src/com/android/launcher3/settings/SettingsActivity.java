@@ -95,7 +95,7 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
         Utilities.getPrefs(getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
+  @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 
     private boolean startPreference(String fragment, Bundle args, String key) {

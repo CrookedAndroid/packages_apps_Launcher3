@@ -160,7 +160,6 @@ public final class Utilities {
     public static final String LENS_SHARE_ACTIVITY = "com.google.android.apps.search.lens.LensShareEntryPointActivity";
     public static final String LENS_URI = "google://lens";
     public static final String SHOW_HOTSEAT_BG = "show_hotseat_bg";
-    public static final String KEY_QUICK_EVENTS_MSGS = "pref_show_qs_messages";
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
     public static final String KEY_DOCK_THEME = "pref_dock_theme";
     public static final String KEY_BLUR_DEPTH = "pref_blur_depth";
@@ -988,16 +987,6 @@ public final class Utilities {
         return prefs.getBoolean(KEY_DOCK_SEARCH, true);
     }
 
-    public static boolean showQuickEventsMsgs(Context context) {
-        SharedPreferences prefs = getPrefs(context.getApplicationContext());
-        return prefs.getBoolean(KEY_QUICK_EVENTS_MSGS, true);
-    }
-
-    public static boolean isExtendedQuickSpace(Context context) {
-        SharedPreferences prefs = getPrefs(context.getApplicationContext());
-        return prefs.getBoolean(KEY_EXTENDED_QUICKSPACE, true);
-    }
-
     public static int getBlurRadius(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getInt(KEY_BLUR_DEPTH,
@@ -1028,6 +1017,4 @@ public final class Utilities {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_STATUS_BAR, true);
     }
-=======
->>>>>>> parent of fa05c104d9... Launcher3: Introduce Quickspace [updated and heavily squashed]
 }

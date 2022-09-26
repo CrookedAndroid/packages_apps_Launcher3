@@ -239,7 +239,7 @@ import java.util.stream.Stream;
  */
 public class Launcher extends StatefulActivity<LauncherState>
         implements LauncherExterns, Callbacks, InvariantDeviceProfile.OnIDPChangeListener,
-        PluginListener<LauncherOverlayPlugin>, LauncherOverlayCallbacks {
+        PluginListener<LauncherOverlayPlugin>, LauncherOverlayCallbacks, SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String TAG = "Launcher";
 
     public static final ActivityTracker<Launcher> ACTIVITY_TRACKER = new ActivityTracker<>();
@@ -554,6 +554,17 @@ public class Launcher extends StatefulActivity<LauncherState>
 
     public OnboardingPrefs<? extends Launcher> getOnboardingPrefs() {
         return mOnboardingPrefs;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { 
+        switch (key) {
+            case Utilities.SHOW_HOTSEAT_BG:
+                recreate();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

@@ -33,9 +33,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.graphics.Insets;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,13 +43,9 @@ import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.lineage.trust.db.TrustComponent;
 
-import com.google.android.material.color.DynamicColors;
-
-import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
-
 import java.util.List;
 
-public class TrustAppsActivity extends CollapsingToolbarBaseActivity implements
+public class TrustAppsActivity extends Activity implements
         TrustAppsAdapter.Listener,
         LoadTrustComponentsTask.Callback,
         UpdateItemTask.UpdateCallback {
@@ -70,25 +63,16 @@ public class TrustAppsActivity extends CollapsingToolbarBaseActivity implements
     protected void onCreate(@Nullable Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-        setContentView(R.layout.activity_hidden_apps);
-        DynamicColors.applyToActivityIfAvailable(this);
-        setTheme(com.android.settingslib.widget.theme.R.style.Theme_SubSettingsBase);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
+        setContentView(R.layout.activity_hidden_apps);
         mRecyclerView = findViewById(R.id.hidden_apps_list);
         mLoadingView = findViewById(R.id.hidden_apps_loading);
         mLoadingView.setVisibility(View.VISIBLE);
         mProgressBar = findViewById(R.id.hidden_apps_progress_bar);
-
-        ViewCompat.setOnApplyWindowInsetsListener(mRecyclerView, (view, insets) -> {
-            Insets systemInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            view.setPadding(
-                view.getPaddingLeft(),
-                systemInsets.top,
-                view.getPaddingRight(),
-                systemInsets.bottom
-            );
-            return WindowInsetsCompat.CONSUMED;
-        });
 
         final boolean hasSecureKeyguard = Utilities.hasSecureKeyguard(this);
         mAdapter = new TrustAppsAdapter(this, this, hasSecureKeyguard);

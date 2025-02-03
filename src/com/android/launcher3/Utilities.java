@@ -1157,6 +1157,4 @@ public final class Utilities {
         SharedPreferences prefs = LauncherPrefs.getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_AUTO_KEYABORD, false);
     }
-=======
->>>>>>> parent of 4abe267aa3 (Launcher3: Implement hidden & protected apps)
 }
